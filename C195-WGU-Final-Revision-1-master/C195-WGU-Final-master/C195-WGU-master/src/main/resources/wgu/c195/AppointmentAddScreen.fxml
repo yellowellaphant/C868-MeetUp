@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="686.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentAddController">
+   <children>
+      <Label layoutX="235.0" layoutY="45.0" text="Add Appointment">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="appointmentIDField" disable="true" layoutX="77.0" layoutY="117.0" promptText="Appointment ID" text="Appointment ID" />
+      <TextField fx:id="titleField" layoutX="77.0" layoutY="180.0" promptText="Title" />
+      <TextField fx:id="descriptionField" layoutX="77.0" layoutY="244.0" prefHeight="120.0" prefWidth="224.0" promptText="Description" />
+      <TextField fx:id="locationField" layoutX="77.0" layoutY="390.0" promptText="Location" />
+      <TextField fx:id="typeField" layoutX="77.0" layoutY="452.0" promptText="Type" />
+      <ComboBox fx:id="contactComboBox" layoutX="373.0" layoutY="117.0" prefHeight="39.0" prefWidth="224.0" promptText="Select a Contact..." />
+      <ComboBox fx:id="userIDComboBox" layoutX="373.0" layoutY="180.0" prefHeight="39.0" prefWidth="224.0" promptText="Select a User ID..." />
+      <ComboBox fx:id="customerIDComboBox" layoutX="373.0" layoutY="244.0" prefHeight="39.0" prefWidth="224.0" promptText="Select a Customer ID..." />
+      <Label layoutX="373.0" layoutY="310.0" text="Start Date/Time" />
+      <DatePicker fx:id="startDatePicker" layoutX="373.0" layoutY="348.0" prefHeight="39.0" prefWidth="224.0" promptText="Select start date" />
+      <ComboBox fx:id="startTimeCombo" layoutX="508.0" layoutY="304.0" prefHeight="25.0" prefWidth="90.0" promptText="Start time" />
+      <Label layoutX="373.0" layoutY="413.0" text="End Date/Time" />
+      <DatePicker fx:id="endDatePicker" layoutX="373.0" layoutY="452.0" prefHeight="39.0" prefWidth="224.0" promptText="Select end date" />
+      <ComboBox fx:id="endTimeCombo" layoutX="508.0" layoutY="407.0" prefHeight="25.0" prefWidth="90.0" promptText=" End time" />
+      <Button layoutX="519.0" layoutY="576.0" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
+      <Button layoutX="415.0" layoutY="576.0" mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" />
+   </children>
+</AnchorPane>
