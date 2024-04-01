@@ -54,16 +54,16 @@ public class AppointmentDAO {
 
                 // Convert to local time
                 ZoneId userTimeZone = ZoneId.systemDefault();
-                System.out.println(userTimeZone);
+                //System.out.println(userTimeZone);
 
                 //aptStart = aptStart.atZone(userTimeZone).toLocalDateTime();
                 //aptEnd = aptEnd.atZone(userTimeZone).toLocalDateTime();
 
                 // Convert start and end times to the user's local time zone
                 aptStart = aptStart.atZone(utcZone).withZoneSameInstant(userTimeZone).toLocalDateTime();
-                System.out.println(aptStart);
+                //System.out.println(aptStart);
                 aptEnd = aptEnd.atZone(utcZone).withZoneSameInstant(userTimeZone).toLocalDateTime();
-                System.out.println(aptEnd);
+                //System.out.println(aptEnd);
 
                 Appointment a = new Appointment(appointmentID, title, description, aptContactID, aptContact, aptType,
                         aptStart, aptEnd, aptCustomerID,aptUserID, aptLocation);
