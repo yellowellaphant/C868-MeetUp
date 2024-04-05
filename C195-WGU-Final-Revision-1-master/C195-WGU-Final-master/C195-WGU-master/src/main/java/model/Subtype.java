@@ -8,11 +8,23 @@ public class Subtype {
 
     /**
      * Constructor for Subtype
-     * @param subTypeID
-     * @param subTypeName
-     * @param typeID
+     * @param subTypeID subTypeID
+     * @param subTypeName subTypeName
+     * @param typeID typeID
      */
     public Subtype(int subTypeID, String subTypeName, int typeID) {
+
+        this.subTypeID = subTypeID;
+        this.subTypeName = subTypeName;
+
+    }
+
+    /**
+     * Constructor for Subtype
+     * @param subTypeID subTypeID
+     * @param subTypeName subTypeName
+     */
+    public Subtype(int subTypeID, String subTypeName) {
 
         this.subTypeID = subTypeID;
         this.subTypeName = subTypeName;
