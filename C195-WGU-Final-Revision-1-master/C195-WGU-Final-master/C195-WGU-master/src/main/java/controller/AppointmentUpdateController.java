@@ -1,9 +1,6 @@
 package controller;
 
-import DAO.AppointmentDAO;
-import DAO.ContactDAO;
-import DAO.CustomerDAO;
-import DAO.UserDAO;
+import DAO.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,15 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.Appointment;
-import model.Contact;
-import model.Customer;
-import model.User;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.*;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,6 +27,8 @@ import java.util.ResourceBundle;
  */
 public class AppointmentUpdateController implements Initializable {
 
+    public ComboBox<Type> typeCombo;
+    public ComboBox<Subtype> subtypeCombo;
     private Appointment selectedAppointment;
     @FXML
     private TextField appointmentIDField;
@@ -79,12 +74,15 @@ public class AppointmentUpdateController implements Initializable {
         ObservableList<Customer> customerList = CustomerDAO.getCustomerList();
         customerIDComboBox.setItems(customerList);
 
+        ObservableList<Type> typeList = TypeDAO.getAllType();
+        typeCombo.setItems(typeList);
+
         try {
             appointmentIDField.setText(Integer.toString(selectedAppointment.getAppointmentID()));
             titleField.setText(selectedAppointment.getTitle());
             descriptionField.setText(selectedAppointment.getDescription());
             locationField.setText(selectedAppointment.getLocation());
-            typeField.setText(selectedAppointment.getType());
+            //typeField.setText(selectedAppointment.getSubtypeID());
 
             //add setters for combo boxes
             startTimeCombo.setValue(selectedAppointment.getStart().toLocalTime());
@@ -98,6 +96,14 @@ public class AppointmentUpdateController implements Initializable {
             userIDComboBox.setValue(u);
             Customer c2 = CustomerDAO.returnCustomerList(selectedAppointment.getAptCustomerID());
             customerIDComboBox.setValue(c2);
+
+            Subtype s = TypeDAO.returnSubtype2(selectedAppointment.getSubtypeID());
+            subtypeCombo.setValue(s);
+
+            int subtypeID = selectedAppointment.getSubtypeID();
+            //System.out.println(subtypeID);
+            Type t = TypeDAO.returnTypeBySubtypeID(subtypeID);
+            typeCombo.setValue(t);
 
 
         } catch (Exception e) {
@@ -133,8 +139,13 @@ public class AppointmentUpdateController implements Initializable {
         int appointmentID = Integer.parseInt(appointmentIDField.getText());
         String appointmentTitle = titleField.getText();
         String appointmentDescription = descriptionField.getText();
-        String appointmentType = typeField.getText();
+        //String appointmentType = typeField.getText();
 
+
+        Subtype subtype = subtypeCombo.getValue();
+        if (subtype == null) {
+            helper.Alerts.displayAlert(8);
+        }
 
         Contact contact = contactComboBox.getValue();
         if (contact == null) {
@@ -186,9 +197,10 @@ public class AppointmentUpdateController implements Initializable {
         int appointmentContact = contact.getContactID();
         int appointmentCustomerId = customer.getCustomerID();
         int appointmentUserId = user.getUserID();
+        int appointmentSubtype = subtype.getSubTypeID();
 
 
-        if (appointmentTitle == null || appointmentDescription == null || appointmentType == null || appointmentLocation == null) {
+        if (appointmentTitle == null || appointmentDescription == null || appointmentLocation == null) {
             helper.Alerts.displayAlert(8);
             return;
         } else if (Appointment.businessHours(appointmentStart, appointmentEnd)){
@@ -211,7 +223,7 @@ public class AppointmentUpdateController implements Initializable {
             LocalDateTime appointmentEndUTC = utcEndDateTime.toLocalDateTime();
 
             AppointmentDAO.updateAppointment(appointmentID, appointmentTitle, appointmentDescription, appointmentLocation,
-                    appointmentType, appointmentStartUTC, appointmentEndUTC, appointmentCustomerId, appointmentUserId, appointmentContact);
+                    appointmentSubtype, appointmentStartUTC, appointmentEndUTC, appointmentCustomerId, appointmentUserId, appointmentContact);
             returnToAppointments(actionEvent);
             helper.Alerts.displayAlert(15);
         }
@@ -232,4 +244,12 @@ public class AppointmentUpdateController implements Initializable {
     }
 
 
+    public void onTypeSelect(ActionEvent actionEvent) {
+        Type t = typeCombo.getValue();
+        try {
+            subtypeCombo.setItems(TypeDAO.displaySubtype(t.getTypeID()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

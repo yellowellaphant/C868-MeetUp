@@ -4,7 +4,7 @@ public class Subtype {
 
     private int subTypeID;
     private String subTypeName;
-    //private int typeID;
+    private int typeID;
 
     /**
      * Constructor for Subtype
@@ -62,6 +62,21 @@ public class Subtype {
     public void setSubTypeName(String subTypeName) {
         this.subTypeName = subTypeName;
     }
+
+    public int getTypeID() {
+        return typeID;
+    }
+
+    public void setTypeID(int typeID) {
+        this.typeID = typeID;
+    }
+
+    /**
+     * returns string representation of subtypeName
+     * @return getSubtypeName
+     */
+    @Override
+    public String toString() {return getSubTypeName();}
 
 
 }

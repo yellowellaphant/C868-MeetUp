@@ -1,8 +1,7 @@
 package controller;
 
 import DAO.AppointmentDAO;
-import DAO.CustomerDAO;
-import javafx.beans.property.SimpleStringProperty;
+import DAO.TypeDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,13 +14,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
-import model.Customer;
+import model.Type;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -48,7 +45,7 @@ public class AppointmentsController implements Initializable {
     @FXML
     private TableColumn<Appointment, Integer> contactCol;
     @FXML
-    private TableColumn<Appointment, String> typeCol;
+    private TableColumn<Appointment, Integer> typeCol;
     @FXML
     private TableColumn<Appointment, Timestamp> startCol;
     @FXML
@@ -74,7 +71,7 @@ public class AppointmentsController implements Initializable {
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("subtypeID"));
 
         startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
@@ -124,11 +121,15 @@ public class AppointmentsController implements Initializable {
 
         appointmentToUpdate = appointmentTable.getSelectionModel().getSelectedItem();
 
-        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/wgu/c195/AppointmentUpdateScreen.fxml")));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        if (appointmentToUpdate == null) {helper.Alerts.displayAlert(12);
+        } else {
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/wgu/c195/AppointmentUpdateScreen.fxml")));
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+
     }
 
     /**
@@ -153,7 +154,7 @@ public class AppointmentsController implements Initializable {
                 //AppointmentDAO.deleteAppointment(appointmentTable.getSelectionModel().getSelectedItem().getAppointmentID());
 
                 int aptToDelete = appointmentTable.getSelectionModel().getSelectedItem().getAppointmentID();
-                String aptDelType = appointmentTable.getSelectionModel().getSelectedItem().getType();
+                int aptDelType = appointmentTable.getSelectionModel().getSelectedItem().getSubtypeID();
                 AppointmentDAO.deleteAppointment(aptToDelete);
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

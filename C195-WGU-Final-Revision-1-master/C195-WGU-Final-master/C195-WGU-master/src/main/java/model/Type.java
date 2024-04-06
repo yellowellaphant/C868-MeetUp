@@ -51,5 +51,12 @@ public abstract class Type {
         this.typeName = typeName;
     }
 
+    /**
+     * returns string representation of typeName
+     * @return getTypeName
+     */
+    @Override
+    public String toString() {return getTypeName();}
+
 
 }

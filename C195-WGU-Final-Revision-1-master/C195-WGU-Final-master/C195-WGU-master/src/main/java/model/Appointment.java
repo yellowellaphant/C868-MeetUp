@@ -20,7 +20,7 @@ public class Appointment {
     private String title;
     private String description;
     private String location;
-    private String type;
+    private int subtypeID;
     private LocalDateTime start;
     private LocalDateTime end;
     private int aptCustomerID;
@@ -39,7 +39,7 @@ public class Appointment {
      * @param title .
      * @param description .
      * @param location .
-     * @param type .
+     * @param subtypeID .
      * @param start .
      * @param end .
      * @param aptCustomerID .
@@ -50,7 +50,7 @@ public class Appointment {
      * @param lastUpdate .
      * @param lastUpdatedBy .
      */
-    public Appointment(int appointmentID, String title, String description, String location, String type,
+    public Appointment(int appointmentID, String title, String description, String location, int subtypeID,
                        LocalDateTime start, LocalDateTime end, int aptCustomerID, int aptUserID, int aptContactID,
                        LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String lastUpdatedBy) {
 
@@ -58,7 +58,7 @@ public class Appointment {
         this.title = title;
         this.description = description;
         this.location = location;
-        this.type = type;
+        this.subtypeID = subtypeID;
         this.start = start;
         this.end = end;
         this.aptCustomerID = aptCustomerID;
@@ -73,21 +73,21 @@ public class Appointment {
      * @param title .
      * @param description .
      * @param location .
-     * @param type .
+     * @param subtypeID .
      * @param start .
      * @param end .
      * @param aptCustomerID .
      * @param aptUserID .
      * @param aptContactID .
      */
-    public Appointment(int appointmentID, String title, String description, String location, String type,
+    public Appointment(int appointmentID, String title, String description, String location, int subtypeID,
                        LocalDateTime start, LocalDateTime end, int aptCustomerID, int aptUserID, int aptContactID) {
 
         this.appointmentID = appointmentID;
         this.title = title;
         this.description = description;
         this.location = location;
-        this.type = type;
+        this.subtypeID = subtypeID;
         this.start = start;
         this.end = end;
         this.aptCustomerID = aptCustomerID;
@@ -103,7 +103,7 @@ public class Appointment {
      * @param description .
      * @param aptContactID .
      * @param aptContactName .
-     * @param type .
+     * @param subtypeID .
      * @param start .
      * @param end .
      * @param aptCustomerID .
@@ -111,14 +111,14 @@ public class Appointment {
      * @param location .
      */
     public Appointment(int appointmentID, String title, String description, int aptContactID, String aptContactName,
-                       String type, LocalDateTime start, LocalDateTime end, int aptCustomerID, int aptUserID, String location) {
+                       int subtypeID, LocalDateTime start, LocalDateTime end, int aptCustomerID, int aptUserID, String location) {
 
         this.appointmentID = appointmentID;
         this.title = title;
         this.description = description;
         this.aptContactID = aptContactID;
         this.aptContactName = aptContactName;
-        this.type = type;
+        this.subtypeID = subtypeID;
         this.start = start;
         this.end = end;
         this.aptCustomerID = aptCustomerID;
@@ -131,21 +131,21 @@ public class Appointment {
     /**
      * Constructor for appointment
      *
-     * @param type
+     * @param subtypeID
      * @param aptTypeTotal
      */
-    public Appointment(String type, int aptTypeTotal) {
-        this.type = type;
+    public Appointment(int subtypeID, int aptTypeTotal) {
+        this.subtypeID = subtypeID;
         this.aptTypeTotal = aptTypeTotal;
     }
 
-    public Appointment(int appointmentID, String title, String description, String location, String type, String formattedStart,
+    public Appointment(int appointmentID, String title, String description, String location, int subtypeID, String formattedStart,
                        String formattedEnd, int aptCustomerID, int aptUserID, int aptContactID) {
         this.appointmentID = appointmentID;
         this.title = title;
         this.description = description;
         this.aptContactID = aptContactID;
-        this.type = type;
+        this.subtypeID = subtypeID;
         this.formattedStart = formattedStart;
         this.formattedEnd = formattedEnd;
         this.aptCustomerID = aptCustomerID;
@@ -212,12 +212,12 @@ public class Appointment {
      * The getter for appointment  type
      * @return appointment type
      */
-    public String getType() {return type;}
+    public int getSubtypeID() {return subtypeID;}
     /**
      * The setter for appointment type
-     * @param type
+     * @param subtypeID
      */
-    public void setType(String type) {this.type = type;}
+    public void setSubtypeID(int subtypeID) {this.subtypeID = subtypeID;}
 
     /**
      * The getter for appointment end time

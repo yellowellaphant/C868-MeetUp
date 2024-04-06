@@ -43,7 +43,7 @@ public class AppointmentDAO {
                 String description = rs.getString("Description");
                 int aptContactID = rs.getInt("Contact_ID");
                 String aptContact = rs.getString("Contact_Name");
-                String aptType = rs.getString("Type");
+                int aptSubtypeID = rs.getInt("Subtype_ID");
                 LocalDateTime aptStart = rs.getTimestamp("Start").toLocalDateTime();
                 //Timestamp aptStart = rs.getTimestamp("Start");
                 LocalDateTime aptEnd = rs.getTimestamp("End").toLocalDateTime();
@@ -65,7 +65,7 @@ public class AppointmentDAO {
                 aptEnd = aptEnd.atZone(utcZone).withZoneSameInstant(userTimeZone).toLocalDateTime();
                 //System.out.println(aptEnd);
 
-                Appointment a = new Appointment(appointmentID, title, description, aptContactID, aptContact, aptType,
+                Appointment a = new Appointment(appointmentID, title, description, aptContactID, aptContact, aptSubtypeID,
                         aptStart, aptEnd, aptCustomerID,aptUserID, aptLocation);
                 appointmentList.add(a);
             }
@@ -81,7 +81,7 @@ public class AppointmentDAO {
      * @param title appointment title
      * @param description appointment description
      * @param location appointment location
-     * @param type appointment type
+     * @param subtype appointment type
      * @param start appointment start time
      * @param end appointment end time
      * @param aptCustomerID customer ID for appointment
@@ -89,24 +89,16 @@ public class AppointmentDAO {
      * @param aptContactID contact ID for appointment
      * @throws SQLException
      */
-    public static void addAppointment(String title, String description, String location, String type, LocalDateTime start, LocalDateTime end,
+    public static void addAppointment(String title, String description, String location, int subtype, LocalDateTime start, LocalDateTime end,
                                       int aptCustomerID, int aptUserID, int aptContactID) throws SQLException {
         try {
-            String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO appointments (Title, Description, Location, Subtype_ID, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement aptAdd = JDBC.conn.prepareStatement(sql);
 
             aptAdd.setString(1, title);
             aptAdd.setString(2, description);
             aptAdd.setString(3, location);
-            aptAdd.setString(4, type);
-
-            /*Instant startInstant = start.atZone(ZoneId.systemDefault()).toInstant();
-            Instant endInstant = end.atZone(ZoneId.systemDefault()).toInstant();
-
-            aptAdd.setTimestamp(5, Timestamp.from(startInstant));
-            aptAdd.setTimestamp(6, Timestamp.from(endInstant));*/
-            //aptAdd.setTimestamp(5, Timestamp.valueOf(start));
-            //aptAdd.setTimestamp(6, Timestamp.valueOf(end));
+            aptAdd.setInt(4, subtype);
 
             aptAdd.setObject(5, start);
             aptAdd.setObject(6, end);
@@ -147,27 +139,27 @@ public class AppointmentDAO {
      * @param title appointment title
      * @param description appointment description
      * @param location appointment location
-     * @param type appointment type
+     * @param subtype appointment type
      * @param start appointment start time
      * @param end appointment end time
      * @param aptCustomerID customer ID for appointment
      * @param aptUserID user ID for appointment
      * @param aptContactID contact ID for appointment
      */
-    public static void updateAppointment(int appointmentID, String title, String description, String location, String type, LocalDateTime start,
+    public static void updateAppointment(int appointmentID, String title, String description, String location, int subtype, LocalDateTime start,
                                          LocalDateTime end, int aptCustomerID, int aptUserID, int aptContactID) {
         try {
 
             //LocalDateTime startConverted = start.atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
             //LocalDateTime endConverted = end.atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
 
-            String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
+            String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Subtype_ID = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
             PreparedStatement aptUpdate = JDBC.conn.prepareStatement(sql);
 
             aptUpdate.setString(1, title);
             aptUpdate.setString(2, description);
             aptUpdate.setString(3, location);
-            aptUpdate.setString(4, type);
+            aptUpdate.setInt(4, subtype);
             aptUpdate.setTimestamp(5, Timestamp.valueOf(start));
             aptUpdate.setTimestamp(6, Timestamp.valueOf(end));
             aptUpdate.setInt(7, aptCustomerID);
@@ -200,7 +192,7 @@ public class AppointmentDAO {
                 String title = rs.getString("Title");
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
-                String type = rs.getString("Type");
+                int subtypeID = rs.getInt("Subtype_ID");
                 //LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
                 //LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
                 LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
@@ -209,7 +201,7 @@ public class AppointmentDAO {
                 int aptCustomerID = rs.getInt("Customer_ID");
                 int aptUserID = rs.getInt("User_ID");
                 int aptContactID = rs.getInt("Contact_ID");
-                Appointment results = new Appointment(appointmentID, title, description, location, type, start, end,
+                Appointment results = new Appointment(appointmentID, title, description, location, subtypeID, start, end,
                         aptCustomerID, aptUserID, aptContactID);
                 userAppointments.add(results);
             }
@@ -237,14 +229,14 @@ public class AppointmentDAO {
                 String description = rs.getString("Description");
                 int aptContactID = rs.getInt("Contact_ID");
                 String aptContact = rs.getString("Contact_Name");
-                String type = rs.getString("Type");
+                int subtypeID = rs.getInt("Subtype_ID");
                 LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
                 LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
                 int aptCustomerID = rs.getInt("Customer_ID");
                 int aptUserID = rs.getInt("User_ID");
                 String location = rs.getString("Location");
 
-                Appointment results = new Appointment(appointmentID, title, description, aptContactID, aptContact, type, start, end,
+                Appointment results = new Appointment(appointmentID, title, description, aptContactID, aptContact, subtypeID, start, end,
                         aptCustomerID, aptUserID, location);
                 contactAppointments.add(results);
             }
@@ -272,7 +264,7 @@ public class AppointmentDAO {
                 String description = rs.getString("Description");
                 int aptContactID = rs.getInt("Contact_ID");
                 String aptContact = rs.getString("Contact_Name");
-                String type = rs.getString("Type");
+                int subtypeID = rs.getInt("Subtype_ID");
                 //LocalDateTime aptStart = rs.getTimestamp("Start").toLocalDateTime();
                 //LocalDateTime aptEnd = rs.getTimestamp("End").toLocalDateTime();
                 LocalDateTime aptStart = rs.getTimestamp("Start").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
@@ -282,7 +274,7 @@ public class AppointmentDAO {
                 int aptUserID = rs.getInt("User_ID");
                 String aptLocation = rs.getString("Location");
                 Appointment weekly = new Appointment(appointmentID, title, description, aptContactID, aptContact,
-                        type, aptStart, aptEnd, aptCustomerID, aptUserID, aptLocation);
+                        subtypeID, aptStart, aptEnd, aptCustomerID, aptUserID, aptLocation);
                 weekList.add(weekly);
             }
         } catch (SQLException e) {
@@ -308,7 +300,7 @@ public class AppointmentDAO {
                 String description = rs.getString("Description");
                 int aptContactID = rs.getInt("Contact_ID");
                 String aptContact = rs.getString("Contact_Name");
-                String type = rs.getString("Type");
+                int subtypeID = rs.getInt("Subtype_ID");
                 //LocalDateTime aptStart = rs.getTimestamp("Start").toLocalDateTime();
                 //LocalDateTime aptEnd = rs.getTimestamp("End").toLocalDateTime();
                 LocalDateTime aptStart = rs.getTimestamp("Start").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
@@ -318,7 +310,7 @@ public class AppointmentDAO {
                 int aptUserID = rs.getInt("User_ID");
                 String aptLocation = rs.getString("Location");
                 Appointment month = new Appointment(appointmentID, title, description, aptContactID, aptContact,
-                        type, aptStart, aptEnd, aptCustomerID, aptUserID, aptLocation);
+                        subtypeID, aptStart, aptEnd, aptCustomerID, aptUserID, aptLocation);
                 monthList.add(month);
             }
         } catch (SQLException e) {
@@ -339,9 +331,9 @@ public class AppointmentDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String aptType = rs.getString("Type");
+                int aptSubtypeID = rs.getInt("Subtype_ID");
                 int aptTypeTotal = rs.getInt("NUM");
-                Appointment results = new Appointment(aptType, aptTypeTotal);
+                Appointment results = new Appointment(aptSubtypeID, aptTypeTotal);
                 aptTypeTotalList.add(results);
             }
         } catch (SQLException e) {
@@ -361,10 +353,12 @@ public class AppointmentDAO {
             PreparedStatement ps = JDBC.conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
+
+            //MAY NOT WORK ANYMORE
             while (rs.next()) {
-                String aptType = rs.getString("Month");
+                int aptMonthType = rs.getInt("Month");
                 int aptTypeTotal = rs.getInt("NUM");
-                Appointment results = new Appointment(aptType, aptTypeTotal);
+                Appointment results = new Appointment(aptMonthType, aptTypeTotal);
                 aptMonthTotalList.add(results);
             }
         } catch (SQLException e) {

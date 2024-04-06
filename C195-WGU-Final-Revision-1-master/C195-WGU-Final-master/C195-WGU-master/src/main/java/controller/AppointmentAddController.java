@@ -1,9 +1,6 @@
 package controller;
 
-import DAO.AppointmentDAO;
-import DAO.ContactDAO;
-import DAO.CustomerDAO;
-import DAO.UserDAO;
+import DAO.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +29,8 @@ import java.util.stream.Collectors;
  * @author Ella Upchurch
  */
 public class AppointmentAddController implements Initializable {
+    public ComboBox<Type> typeCombo;
+    public ComboBox<Subtype> subtypeCombo;
     @FXML
     private TextField appointmentIDField;
     @FXML
@@ -40,8 +39,8 @@ public class AppointmentAddController implements Initializable {
     private TextField descriptionField;
     @FXML
     private TextField locationField;
-    @FXML
-    private TextField typeField;
+    //@FXML
+    //private TextField typeField;
     @FXML
     private ComboBox<Contact> contactComboBox;
     @FXML
@@ -83,6 +82,9 @@ public class AppointmentAddController implements Initializable {
         ObservableList<Customer> customerList = CustomerDAO.getCustomerList();
         customerIDComboBox.setItems(customerList);
 
+        ObservableList<Type> typeList = TypeDAO.getAllType();
+        typeCombo.setItems(typeList);
+
         startDatePicker.valueProperty().addListener((ov, oldValueDate, newValueDate) -> endDatePicker.setValue(newValueDate.plusDays(daysToAdd)));
         startTimeCombo.valueProperty().addListener((observableValue, oldValueTime, newValueTime) -> endTimeCombo.setValue(newValueTime.plusMinutes(30)));
 
@@ -117,8 +119,13 @@ public class AppointmentAddController implements Initializable {
 
         String appointmentTitle = titleField.getText();
         String appointmentDescription = descriptionField.getText();
-        String appointmentType = typeField.getText();
+        //String appointmentType = typeField.getText();
 
+
+        Subtype subtype = subtypeCombo.getValue();
+        if (subtype == null) {
+            helper.Alerts.displayAlert(8);
+        }
 
         Contact contact = contactComboBox.getValue();
         if (contact == null) {
@@ -170,9 +177,10 @@ public class AppointmentAddController implements Initializable {
         int appointmentContact = contact.getContactID();
         int appointmentCustomerId = customer.getCustomerID();
         int appointmentUserId = user.getUserID();
+        int appointmentSubtype = subtype.getSubTypeID();
 
 
-        if (appointmentTitle == null || appointmentDescription == null || appointmentType == null || appointmentLocation == null) {
+        if (appointmentTitle == null || appointmentDescription == null || appointmentLocation == null) {
             helper.Alerts.displayAlert(8);
             return;
         } else if (Appointment.businessHours(appointmentStart, appointmentEnd)){
@@ -196,7 +204,7 @@ public class AppointmentAddController implements Initializable {
             LocalDateTime appointmentStartUTC = utcStartDateTime.toLocalDateTime();
             LocalDateTime appointmentEndUTC = utcEndDateTime.toLocalDateTime();
 
-            AppointmentDAO.addAppointment(appointmentTitle, appointmentDescription, appointmentLocation, appointmentType,
+            AppointmentDAO.addAppointment(appointmentTitle, appointmentDescription, appointmentLocation, appointmentSubtype,
                     appointmentStartUTC, appointmentEndUTC, appointmentCustomerId, appointmentUserId, appointmentContact);
             returnToAppointments(actionEvent);
             helper.Alerts.displayAlert(14);
@@ -219,4 +227,12 @@ public class AppointmentAddController implements Initializable {
     }
 
 
+    public void onTypeSelect(ActionEvent actionEvent) {
+        Type t = typeCombo.getValue();
+        try {
+            subtypeCombo.setItems(TypeDAO.displaySubtype(t.getTypeID()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
