@@ -33,3 +33,9 @@
 04-06-2024 05:14:22 Login attempted by user: <test> Status: successful
 04-06-2024 05:16:05 Login attempted by user: <test> Status: successful
 04-06-2024 05:20:09 Login attempted by user: <test> Status: successful
+04-06-2024 05:26:18 Login attempted by user: <test> Status: successful
+04-06-2024 05:32:23 Login attempted by user: <test> Status: successful
+04-06-2024 05:40:44 Login attempted by user: <test> Status: successful
+04-06-2024 05:46:35 Login attempted by user: <test> Status: successful
+04-06-2024 05:48:18 Login attempted by user: <test> Status: successful
+04-06-2024 05:50:16 Login attempted by user: <test> Status: successful

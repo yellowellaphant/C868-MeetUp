@@ -30,6 +30,8 @@ public class AppointmentsController implements Initializable {
 
 
     private static Appointment appointmentToUpdate;
+    public TextField searchField;
+
     public static Appointment getAppointmentToUpdate() {return appointmentToUpdate;}
 
     @FXML
@@ -212,5 +214,18 @@ public class AppointmentsController implements Initializable {
         stage.show();
     }
 
+    /**
+     * searches Appointments by ID, Title, or Location
+     * @param actionEvent text typed in search box
+     */
+    public void onSearchMeetings(ActionEvent actionEvent) {
+        // Get the search keyword
+        String keyword = searchField.getText().trim();
 
+        // Search for appointments by ID, title, and location
+        ObservableList<Appointment> searchResults = AppointmentDAO.searchAppointments(keyword);
+
+        // Update the appointmentTable with the search results
+        appointmentTable.setItems(searchResults);
+    }
 }

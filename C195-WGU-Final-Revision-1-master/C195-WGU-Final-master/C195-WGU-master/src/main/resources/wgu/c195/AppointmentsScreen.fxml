@@ -21,10 +21,10 @@
             </columns>
         </TableView>
         <Button layoutX="61.0" layoutY="464.0" mnemonicParsing="false" onAction="#onReturnToMainButtonCLick" text="Return to Main" />
-        <Button layoutX="651.0" layoutY="464.0" mnemonicParsing="false" onAction="#onAddApptButtonClick" text="Add" />
-        <Button layoutX="740.0" layoutY="464.0" mnemonicParsing="false" onAction="#onUpdateApptButtonClick" text="Update" />
-        <Button layoutX="854.0" layoutY="464.0" mnemonicParsing="false" onAction="#onDeleteApptButtonClick" text="Delete" />
-        <Label layoutX="37.0" layoutY="25.0" text="Appointments">
+        <Button layoutX="803.0" layoutY="464.0" mnemonicParsing="false" onAction="#onAddApptButtonClick" text="Add" />
+        <Button layoutX="929.0" layoutY="464.0" mnemonicParsing="false" onAction="#onUpdateApptButtonClick" text="Update" />
+        <Button layoutX="1081.0" layoutY="464.0" mnemonicParsing="false" onAction="#onDeleteApptButtonClick" text="Delete" />
+        <Label layoutX="37.0" layoutY="25.0" text="Meetings">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
@@ -35,6 +35,6 @@
          </toggleGroup></RadioButton>
       <RadioButton fx:id="weekApptRadio" layoutX="543.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelectWeekAppt" text="By Week" toggleGroup="$appointmentToggle" />
       <RadioButton fx:id="monthApptRadio" layoutX="715.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelectMonthAppt" text="By Month" toggleGroup="$appointmentToggle" />
-      <TextField layoutX="874.0" layoutY="27.0" prefHeight="39.0" prefWidth="335.0" promptText="Search by ID, Title, or Type" />
+      <TextField fx:id="searchField" layoutX="874.0" layoutY="27.0" onAction="#onSearchMeetings" prefHeight="39.0" prefWidth="335.0" promptText="Search by ID, Title, or Location" />
     </children>
 </AnchorPane>

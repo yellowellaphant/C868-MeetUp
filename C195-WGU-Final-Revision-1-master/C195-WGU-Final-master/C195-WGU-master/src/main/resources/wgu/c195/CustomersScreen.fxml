@@ -26,5 +26,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
+      <TextField fx:id="searchField" layoutX="593.0" layoutY="23.0" onAction="#onSearchCustomers" prefHeight="39.0" prefWidth="400.0" promptText="Search by Name or ID" />
    </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package controller;
 
 import DAO.AppointmentDAO;
 import DAO.CustomerDAO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
@@ -33,6 +31,8 @@ import java.util.ResourceBundle;
 public class CustomersController implements Initializable {
 
     private static Customer customerToUpdate;
+    public TextField searchField;
+
     public static Customer getCustomerToUpdate() {return customerToUpdate;}
 
     @FXML
@@ -189,6 +189,40 @@ public class CustomersController implements Initializable {
         }
     }
 
+    /**
+     * Searched customers table by name or ID
+     * @param actionEvent text entered in search box
+     */
+    public void onSearchCustomers(ActionEvent actionEvent) {
+        String searchText = searchField.getText().trim().toLowerCase();
+        ObservableList<Customer> searchResults = FXCollections.observableArrayList();
+
+        if (searchText.isEmpty()) {
+            // If search field is empty, display all customers
+            customerInfoTable.setItems(customerList);
+            return;
+        }
+
+        for (Customer customer : customerList) {
+            // Check if customer ID or Name contains the search text
+            if (String.valueOf(customer.getCustomerID()).contains(searchText) ||
+                    customer.getCustomerName().toLowerCase().contains(searchText)) {
+                searchResults.add(customer);
+            }
+        }
+
+        if (searchResults.isEmpty()) {
+            // If no results found, show an alert
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Search Results");
+            alert.setHeaderText(null);
+            alert.setContentText("No customers found matching the search criteria.");
+            alert.showAndWait();
+        } else {
+            // Update the table with search results
+            customerInfoTable.setItems(searchResults);
+        }
+    }
 
 
 }
