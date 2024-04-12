@@ -196,6 +196,9 @@ public class AppointmentDAO {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 int subtypeID = rs.getInt("Subtype_ID");
+
+                String subtype = String.valueOf(TypeDAO.returnSubtype(subtypeID));
+
                 //LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
                 //LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
                 LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
@@ -204,7 +207,7 @@ public class AppointmentDAO {
                 int aptCustomerID = rs.getInt("Customer_ID");
                 int aptUserID = rs.getInt("User_ID");
                 int aptContactID = rs.getInt("Contact_ID");
-                Appointment results = new Appointment(appointmentID, title, description, location, subtypeID, start, end,
+                Appointment results = new Appointment(appointmentID, title, description, location, subtypeID, subtype, start, end,
                         aptCustomerID, aptUserID, aptContactID);
                 userAppointments.add(results);
             }
@@ -233,14 +236,17 @@ public class AppointmentDAO {
                 int aptContactID = rs.getInt("Contact_ID");
                 String aptContact = rs.getString("Contact_Name");
                 int subtypeID = rs.getInt("Subtype_ID");
+
+                String subtype = String.valueOf(TypeDAO.returnSubtype(subtypeID));
+
                 LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
                 LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
                 int aptCustomerID = rs.getInt("Customer_ID");
                 int aptUserID = rs.getInt("User_ID");
                 String location = rs.getString("Location");
 
-                Appointment results = new Appointment(appointmentID, title, description, aptContactID, aptContact, subtypeID, start, end,
-                        aptCustomerID, aptUserID, location);
+                Appointment results = new Appointment(appointmentID, title, description, aptContactID, aptContact,
+                        subtypeID, subtype, start, end, aptCustomerID, aptUserID, location);
                 contactAppointments.add(results);
             }
         } catch (SQLException e) {
@@ -268,6 +274,9 @@ public class AppointmentDAO {
                 int aptContactID = rs.getInt("Contact_ID");
                 String aptContact = rs.getString("Contact_Name");
                 int subtypeID = rs.getInt("Subtype_ID");
+
+                String subtype = String.valueOf(TypeDAO.returnSubtype(subtypeID));
+
                 LocalDateTime aptStart = rs.getTimestamp("Start").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
                 LocalDateTime aptEnd = rs.getTimestamp("End").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
 
@@ -275,7 +284,7 @@ public class AppointmentDAO {
                 int aptUserID = rs.getInt("User_ID");
                 String aptLocation = rs.getString("Location");
                 Appointment weekly = new Appointment(appointmentID, title, description, aptContactID, aptContact,
-                        subtypeID, aptStart, aptEnd, aptCustomerID, aptUserID, aptLocation);
+                        subtypeID, subtype, aptStart, aptEnd, aptCustomerID, aptUserID, aptLocation);
                 weekList.add(weekly);
             }
         } catch (SQLException e) {
@@ -302,6 +311,9 @@ public class AppointmentDAO {
                 int aptContactID = rs.getInt("Contact_ID");
                 String aptContact = rs.getString("Contact_Name");
                 int subtypeID = rs.getInt("Subtype_ID");
+
+                String subtype = String.valueOf(TypeDAO.returnSubtype(subtypeID));
+
                 LocalDateTime aptStart = rs.getTimestamp("Start").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
                 LocalDateTime aptEnd = rs.getTimestamp("End").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
 
@@ -309,7 +321,7 @@ public class AppointmentDAO {
                 int aptUserID = rs.getInt("User_ID");
                 String aptLocation = rs.getString("Location");
                 Appointment month = new Appointment(appointmentID, title, description, aptContactID, aptContact,
-                        subtypeID, aptStart, aptEnd, aptCustomerID, aptUserID, aptLocation);
+                        subtypeID, subtype, aptStart, aptEnd, aptCustomerID, aptUserID, aptLocation);
                 monthList.add(month);
             }
         } catch (SQLException e) {

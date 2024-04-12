@@ -45,3 +45,11 @@
 04-11-2024 08:24:00 Login attempted by user: <admin> Status: successful
 04-11-2024 08:26:56 Login attempted by user: <admin> Status: successful
 04-11-2024 08:29:38 Login attempted by user: <admin> Status: successful
+04-11-2024 08:35:25 Login attempted by user: <admin> Status: successful
+04-11-2024 08:38:11 Login attempted by user: <test> Status: successful
+04-11-2024 08:38:39 Login attempted by user: <test> Status: successful
+04-11-2024 08:39:42 Login attempted by user: <test> Status: successful
+04-11-2024 08:40:24 Login attempted by user: <test> Status: successful
+04-11-2024 08:45:07 Login attempted by user: <test> Status: successful
+04-11-2024 08:48:29 Login attempted by user: <admin> Status: successful
+04-11-2024 08:49:51 Login attempted by user: <test> Status: successful

@@ -188,6 +188,22 @@ public class Appointment {
         this.location = location;
     }
 
+    public Appointment(int appointmentID, String title, String description, String location, int subtypeID, String subtype,
+                       LocalDateTime start, LocalDateTime end, int aptCustomerID, int aptUserID, int aptContactID) {
+
+        this.appointmentID = appointmentID;
+        this.title = title;
+        this.description = description;
+        this.aptContactID = aptContactID;
+        this.subtypeID = subtypeID;
+        this.subtype = subtype;
+        this.start = start;
+        this.end = end;
+        this.aptCustomerID = aptCustomerID;
+        this.aptUserID = aptUserID;
+        this.location = location;
+    }
+
     /**
      * The getter for appointment ID
      * @return appointment ID

@@ -95,20 +95,24 @@ public class ReportsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        aptTypeTable.setItems(AppointmentDAO.getAptTypeTotal());
+        /*aptTypeTable.setItems(AppointmentDAO.getAptTypeTotal());
         aptTypeTotalCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         typeTotalCol.setCellValueFactory(new PropertyValueFactory<>("aptTypeTotal"));
 
-        aptMonthTable.setItems(AppointmentDAO.getAptMonthTotal());
+         */
+
+        /*aptMonthTable.setItems(AppointmentDAO.getAptMonthTotal());
         aptMonthTotalCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         monthTotalCol.setCellValueFactory(new PropertyValueFactory<>("aptTypeTotal"));
+
+         */
 
         contactComboBox.setItems(contactList);
         contactComboBox.setVisibleRowCount(10);
         appointmentIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("subtype"));
         startTimeCol.setCellValueFactory(new PropertyValueFactory<>("start"));
         endTimeCol.setCellValueFactory(new PropertyValueFactory<>("end"));
         customerIDCol.setCellValueFactory(new PropertyValueFactory<>("aptCustomerID"));
@@ -117,7 +121,7 @@ public class ReportsController implements Initializable {
         userAppointmentIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         userTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         userDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        userTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        userTypeCol.setCellValueFactory(new PropertyValueFactory<>("subtype"));
         userStartTimeCol.setCellValueFactory(new PropertyValueFactory<>("start"));
         userEndTimeCol.setCellValueFactory(new PropertyValueFactory<>("end"));
         userCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("aptCustomerID"));
@@ -178,6 +182,7 @@ public class ReportsController implements Initializable {
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 }
