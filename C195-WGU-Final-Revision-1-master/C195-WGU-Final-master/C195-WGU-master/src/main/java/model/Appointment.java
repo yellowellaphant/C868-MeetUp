@@ -21,6 +21,7 @@ public class Appointment {
     private String description;
     private String location;
     private int subtypeID;
+    private String subtype;
     private LocalDateTime start;
     private LocalDateTime end;
     private int aptCustomerID;
@@ -129,6 +130,40 @@ public class Appointment {
     }
 
     /**
+     * Constructor for Appointment
+     * @param appointmentID appointmentID
+     * @param title title
+     * @param description description
+     * @param aptContactID aptContactID
+     * @param aptContactName aptContactName
+     * @param subtypeID subtypeID
+     * @param subtype subtype
+     * @param start start
+     * @param end end
+     * @param aptCustomerID customerID
+     * @param aptUserID aptUserID
+     * @param location location
+     */
+    public Appointment(int appointmentID, String title, String description, int aptContactID, String aptContactName,
+                       int subtypeID, String subtype, LocalDateTime start, LocalDateTime end, int aptCustomerID, int aptUserID, String location) {
+
+        this.appointmentID = appointmentID;
+        this.title = title;
+        this.description = description;
+        this.aptContactID = aptContactID;
+        this.aptContactName = aptContactName;
+        this.subtypeID = subtypeID;
+        this.subtype = subtype;
+        this.start = start;
+        this.end = end;
+        this.aptCustomerID = aptCustomerID;
+        this.aptUserID = aptUserID;
+        this.location = location;
+
+
+    }
+
+    /**
      * Constructor for appointment
      *
      * @param subtypeID
@@ -218,6 +253,22 @@ public class Appointment {
      * @param subtypeID
      */
     public void setSubtypeID(int subtypeID) {this.subtypeID = subtypeID;}
+
+    /**
+     * getter for subtype name
+     * @return subtype name
+     */
+    public String getSubtype() {
+        return subtype;
+    }
+
+    /**
+     * setter for subtype name
+     * @param subtype subtype name
+     */
+    public void setSubtype(String subtype) {
+        this.subtype = subtype;
+    }
 
     /**
      * The getter for appointment end time

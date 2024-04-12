@@ -7,32 +7,32 @@
    <children>
       <Accordion layoutX="34.0" layoutY="36.0" prefHeight="629.0" prefWidth="1120.0">
         <panes>
-          <TitledPane animated="false" prefHeight="564.0" prefWidth="1135.0" text="Appointment Totals">
+          <TitledPane animated="false" prefHeight="564.0" prefWidth="1135.0" text="Meeting Totals">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TableView fx:id="aptTypeTable" layoutX="67.0" layoutY="156.0" prefHeight="200.0" prefWidth="472.0">
                           <columns>
-                            <TableColumn fx:id="aptTypeTotalCol" prefWidth="237.0" text="Appointment Type" />
+                            <TableColumn fx:id="aptTypeTotalCol" prefWidth="237.0" text="Meeting Type" />
                             <TableColumn fx:id="typeTotalCol" prefWidth="234.0" text="Total" />
                           </columns>
                         </TableView>
                         <TableView fx:id="aptMonthTable" layoutX="586.0" layoutY="156.0" prefHeight="200.0" prefWidth="466.0">
                           <columns>
-                            <TableColumn fx:id="aptMonthTotalCol" prefWidth="232.0" text="Appointment Month" />
+                            <TableColumn fx:id="aptMonthTotalCol" prefWidth="232.0" text="Meeting Month" />
                             <TableColumn fx:id="monthTotalCol" prefWidth="233.0" text="Total" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane animated="false" text="Appointments by Contact">
+          <TitledPane animated="false" text="Meetings by Contact">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TableView fx:id="contactAptTable" layoutX="34.0" layoutY="70.0" prefHeight="428.0" prefWidth="1048.0">
                           <columns>
-                            <TableColumn fx:id="appointmentIDCol" prefWidth="96.0" text="Appt. ID" />
+                            <TableColumn fx:id="appointmentIDCol" prefWidth="96.0" text="Meet ID" />
                             <TableColumn fx:id="titleCol" prefWidth="115.0" text="Title" />
                               <TableColumn fx:id="typeCol" prefWidth="114.0" text="Type" />
                               <TableColumn fx:id="descriptionCol" prefWidth="207.0" text="Description" />
@@ -46,13 +46,13 @@
                      </children></AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane animated="false" text="Appointments by User">
+          <TitledPane animated="false" text="Meetings by User">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
                         <TableView fx:id="userAptTable" layoutX="34.0" layoutY="70.0" prefHeight="428.0" prefWidth="1048.0">
                             <columns>
-                                <TableColumn fx:id="userAppointmentIDCol" prefWidth="96.0" text="Appt. ID" />
+                                <TableColumn fx:id="userAppointmentIDCol" prefWidth="96.0" text="Meet ID" />
                                 <TableColumn fx:id="userTitleCol" prefWidth="115.0" text="Title" />
                                 <TableColumn fx:id="userTypeCol" prefWidth="114.0" text="Type" />
                                 <TableColumn fx:id="userDescriptionCol" prefWidth="207.0" text="Description" />
