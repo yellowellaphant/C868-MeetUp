@@ -47,9 +47,9 @@ public class Alerts implements Initializable {
                 alert.setHeaderText("Please select a customer");
                 alert.showAndWait();
                 break;
-            case 5: //no appointments in next 15 minutes
+            case 5: //no meetings in next 15 minutes
                 confirm.setTitle("Alert");
-                confirm.setHeaderText("You have no upcoming appointments");
+                confirm.setHeaderText("You have no upcoming meetings");
                 confirm.showAndWait();
                 break;
             case 6: //delete customer confirmation
@@ -58,7 +58,7 @@ public class Alerts implements Initializable {
                 Optional<ButtonType> result = confirm.showAndWait();
                 //confirm.showAndWait();
                 break;
-            case 7: //cancel customer/appointment add/update
+            case 7: //cancel customer/meeting add/update
                 confirm.setTitle("Alert");
                 confirm.setHeaderText("Are you sure you want to cancel? Any changes you made will be lost");
                 confirm.showAndWait();
@@ -83,24 +83,24 @@ public class Alerts implements Initializable {
                 confirm.setHeaderText("Customer successfully updated");
                 confirm.showAndWait();
                 break;
-            case 12: //No Appointment selected pop-up
+            case 12: //No Meeting selected pop-up
                 alert.setTitle("Error");
-                alert.setHeaderText("Please select an appointment");
+                alert.setHeaderText("Please select a meeting");
                 alert.showAndWait();
                 break;
-            case 13: //Appointment Deleted pop-up
+            case 13: //Meeting Deleted pop-up
                 confirm.setTitle("Alert");
-                confirm.setHeaderText("Appointment successfully deleted");
+                confirm.setHeaderText("Meeting successfully deleted");
                 confirm.showAndWait();
                 break;
-            case 14: //Appointment Added pop-up
+            case 14: //Meeting Added pop-up
                 confirm.setTitle("Alert");
-                confirm.setHeaderText("Appointment successfully added");
+                confirm.setHeaderText("Meeting successfully added");
                 confirm.showAndWait();
                 break;
-            case 15: //Appointment updated pop-up
+            case 15: //Meeting updated pop-up
                 confirm.setTitle("Alert");
-                confirm.setHeaderText("Appointment successfully updated");
+                confirm.setHeaderText("Meeting successfully updated");
                 confirm.showAndWait();
                 break;
         }
