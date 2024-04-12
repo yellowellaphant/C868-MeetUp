@@ -337,14 +337,17 @@ public class AppointmentDAO {
     public static ObservableList<Appointment> getAptTypeTotal() {
         ObservableList<Appointment> aptTypeTotalList = FXCollections.observableArrayList();
         try {
-            String sql = "SELECT Type, Count(*) AS NUM FROM appointments GROUP BY Type";
+            String sql = "SELECT Subtype_ID, Count(*) AS NUM FROM appointments GROUP BY Subtype_ID";
             PreparedStatement ps = JDBC.conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 int aptSubtypeID = rs.getInt("Subtype_ID");
+
+                String aptSubtype = String.valueOf(TypeDAO.returnSubtype(aptSubtypeID));
+
                 int aptTypeTotal = rs.getInt("NUM");
-                Appointment results = new Appointment(aptSubtypeID, aptTypeTotal);
+                Appointment results = new Appointment(aptSubtype, aptTypeTotal);
                 aptTypeTotalList.add(results);
             }
         } catch (SQLException e) {
@@ -367,7 +370,7 @@ public class AppointmentDAO {
 
             //MAY NOT WORK ANYMORE
             while (rs.next()) {
-                int aptMonthType = rs.getInt("Month");
+                String aptMonthType = rs.getString("Month");
                 int aptTypeTotal = rs.getInt("NUM");
                 Appointment results = new Appointment(aptMonthType, aptTypeTotal);
                 aptMonthTotalList.add(results);

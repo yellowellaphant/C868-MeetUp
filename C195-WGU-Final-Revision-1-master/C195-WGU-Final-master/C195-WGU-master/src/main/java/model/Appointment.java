@@ -166,11 +166,11 @@ public class Appointment {
     /**
      * Constructor for appointment
      *
-     * @param subtypeID
-     * @param aptTypeTotal
+     * @param subtype subtype
+     * @param aptTypeTotal type total
      */
-    public Appointment(int subtypeID, int aptTypeTotal) {
-        this.subtypeID = subtypeID;
+    public Appointment(String subtype, int aptTypeTotal) {
+        this.subtype = subtype;
         this.aptTypeTotal = aptTypeTotal;
     }
 

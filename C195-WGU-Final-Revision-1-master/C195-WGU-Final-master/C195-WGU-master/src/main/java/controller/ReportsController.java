@@ -95,17 +95,15 @@ public class ReportsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        /*aptTypeTable.setItems(AppointmentDAO.getAptTypeTotal());
-        aptTypeTotalCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        aptTypeTable.setItems(AppointmentDAO.getAptTypeTotal());
+        aptTypeTotalCol.setCellValueFactory(new PropertyValueFactory<>("subtype"));
         typeTotalCol.setCellValueFactory(new PropertyValueFactory<>("aptTypeTotal"));
 
-         */
 
-        /*aptMonthTable.setItems(AppointmentDAO.getAptMonthTotal());
-        aptMonthTotalCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        aptMonthTable.setItems(AppointmentDAO.getAptMonthTotal());
+        aptMonthTotalCol.setCellValueFactory(new PropertyValueFactory<>("subtype"));
         monthTotalCol.setCellValueFactory(new PropertyValueFactory<>("aptTypeTotal"));
-
-         */
 
         contactComboBox.setItems(contactList);
         contactComboBox.setVisibleRowCount(10);
@@ -158,7 +156,7 @@ public class ReportsController implements Initializable {
         String username = String.valueOf(userComboBox.getValue());
         int userID = UserDAO.getUserID(username);
 
-        if (AppointmentDAO.getContactAppointments(userID).isEmpty()) {
+        if (AppointmentDAO.getUserAppointments(userID).isEmpty()) {
             userAptTable.setPlaceholder(new Label("No appointments for " + username));
             userAptTable.refresh();
             for (int i = 0; i < userAptTable.getItems().size(); i++) {
@@ -166,7 +164,7 @@ public class ReportsController implements Initializable {
                 userAptTable.setPlaceholder(new Label("No appointments for " + username));
             }
         } else {
-            userAptTable.setItems(AppointmentDAO.getContactAppointments(userID));
+            userAptTable.setItems(AppointmentDAO.getUserAppointments(userID));
         }
     }
 

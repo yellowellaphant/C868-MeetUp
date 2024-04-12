@@ -53,3 +53,16 @@
 04-11-2024 08:45:07 Login attempted by user: <test> Status: successful
 04-11-2024 08:48:29 Login attempted by user: <admin> Status: successful
 04-11-2024 08:49:51 Login attempted by user: <test> Status: successful
+04-11-2024 08:52:02 Login attempted by user: <test> Status: successful
+04-11-2024 08:52:59 Login attempted by user: <test> Status: successful
+04-11-2024 08:56:13 Login attempted by user: <test> Status: successful
+04-11-2024 08:57:28 Login attempted by user: <test> Status: successful
+04-11-2024 08:59:19 Login attempted by user: <admin> Status: successful
+04-11-2024 09:00:45 Login attempted by user: < test> Status: failed
+04-11-2024 09:00:45 Login attempted by user: <test> Status: successful
+04-11-2024 09:03:41 Login attempted by user: <test> Status: successful
+04-11-2024 09:05:05 Login attempted by user: <test> Status: successful
+04-11-2024 09:07:44 Login attempted by user: <test> Status: successful
+04-11-2024 09:08:02 Login attempted by user: <test> Status: successful
+04-11-2024 09:09:31 Login attempted by user: <test> Status: successful
+04-11-2024 09:10:05 Login attempted by user: <test> Status: successful
