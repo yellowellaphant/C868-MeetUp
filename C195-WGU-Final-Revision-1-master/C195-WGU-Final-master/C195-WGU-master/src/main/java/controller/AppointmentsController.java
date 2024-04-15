@@ -201,6 +201,18 @@ public class AppointmentsController implements Initializable {
         appointmentTable.setPlaceholder(new Label("No appointments within this timeframe"));
     }
 
+    public void onSelectInternalRadio(ActionEvent actionEvent) {
+        int typeID = 1;
+        appointmentTable.setItems(AppointmentDAO.getAppointmentsByType(typeID));
+        appointmentTable.setPlaceholder(new Label("No internal appointments are scheduled"));
+    }
+
+    public void onSelectExternalRadio(ActionEvent actionEvent) {
+        int typeID = 2;
+        appointmentTable.setItems(AppointmentDAO.getAppointmentsByType(typeID));
+        appointmentTable.setPlaceholder(new Label("No internal appointments are scheduled"));
+    }
+
     /**
      * returns to Appointments screen
      *
@@ -230,9 +242,4 @@ public class AppointmentsController implements Initializable {
         appointmentTable.setItems(searchResults);
     }
 
-    public void onSelectInternalRadio(ActionEvent actionEvent) {
-    }
-
-    public void onSelectExternalRadio(ActionEvent actionEvent) {
-    }
 }

@@ -338,8 +338,12 @@ public class AppointmentDAO {
     public static ObservableList<Appointment> getAppointmentsByType(int typeID) {
         ObservableList<Appointment> appointmentByTypeList = FXCollections.observableArrayList();
         try {
-            String sql = "SELECT * FROM appointments INNER JOIN contacts ON appointments.Contact_ID = contacts.Contact_ID WHERE Type_ID = ? ORDER BY appointments.Appointment_ID";
+            //String sql = "SELECT a.* FROM appointments a JOIN subtypes s ON a.Subtype_ID = s.Subtype_ID WHERE s.Type_ID = ?";
+            String sql = "SELECT a.*, c.Contact_Name FROM appointments a JOIN subtypes s ON a.Subtype_ID = s.Subtype_ID JOIN contacts c ON a.Contact_ID = c.Contact_ID WHERE s.Type_ID = ?";
+
             PreparedStatement ps = JDBC.conn.prepareStatement(sql);
+            ps.setInt(1, typeID);
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
