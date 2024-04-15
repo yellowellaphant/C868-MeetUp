@@ -229,4 +229,10 @@ public class AppointmentsController implements Initializable {
         // Update the appointmentTable with the search results
         appointmentTable.setItems(searchResults);
     }
+
+    public void onSelectInternalRadio(ActionEvent actionEvent) {
+    }
+
+    public void onSelectExternalRadio(ActionEvent actionEvent) {
+    }
 }

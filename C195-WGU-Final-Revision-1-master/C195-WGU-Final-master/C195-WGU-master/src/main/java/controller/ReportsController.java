@@ -183,4 +183,36 @@ public class ReportsController implements Initializable {
         stage.centerOnScreen();
         stage.show();
     }
+
+    /*
+    /**
+     * displays all appointments in appointment table
+     * @param actionEvent toggle all appointment radio
+     */
+    /*
+    public void onSelectAllAppt(ActionEvent actionEvent) {
+        appointmentTable.setItems(AppointmentDAO.getAppointmentList());
+    }
+
+    /**
+     * displays all appointments in appointment table
+     * @param actionEvent toggle weekly appointment radio
+     */
+    /*
+    public void onSelectWeekAppt(ActionEvent actionEvent) {
+        appointmentTable.setItems(AppointmentDAO.getWeeklyApt());
+        appointmentTable.setPlaceholder(new Label("No appointments within this timeframe"));
+    }
+    /**
+     * displays all appointments in appointment table
+     * @param actionEvent toggle monthly appointment radio
+     */
+    /*
+    public void onSelectMonthAppt(ActionEvent actionEvent) {
+        appointmentTable.setItems(AppointmentDAO.getMonthlyApt());
+        appointmentTable.setPlaceholder(new Label("No appointments within this timeframe"));
+    }
+     */
+
+
 }

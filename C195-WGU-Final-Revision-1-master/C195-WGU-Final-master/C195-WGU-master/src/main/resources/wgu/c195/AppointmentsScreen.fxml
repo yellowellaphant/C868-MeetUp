@@ -33,8 +33,8 @@
          <toggleGroup>
             <ToggleGroup fx:id="appointmentToggle" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="weekApptRadio" layoutX="543.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelectWeekAppt" text="By Week" toggleGroup="$appointmentToggle" />
-      <RadioButton fx:id="monthApptRadio" layoutX="715.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelectMonthAppt" text="By Month" toggleGroup="$appointmentToggle" />
+      <RadioButton fx:id="internalApptRadio" layoutX="543.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelectInternalRadio" text="Internal" toggleGroup="$appointmentToggle" />
+      <RadioButton fx:id="externalApptRadio" layoutX="715.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelectExternalRadio" text="External" toggleGroup="$appointmentToggle" />
       <TextField fx:id="searchField" layoutX="874.0" layoutY="27.0" onAction="#onSearchMeetings" prefHeight="39.0" prefWidth="335.0" promptText="Search by ID, Title, or Location" />
     </children>
 </AnchorPane>

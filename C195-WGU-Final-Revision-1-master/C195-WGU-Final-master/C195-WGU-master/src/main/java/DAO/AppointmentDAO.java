@@ -331,6 +331,45 @@ public class AppointmentDAO {
     }
 
     /**
+     * gets appointments based on given type ID (Internal or External)
+     * @param typeID type ID
+     * @return appointmentByTypeList
+     */
+    public static ObservableList<Appointment> getAppointmentsByType(int typeID) {
+        ObservableList<Appointment> appointmentByTypeList = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT * FROM appointments INNER JOIN contacts ON appointments.Contact_ID = contacts.Contact_ID WHERE Type_ID = ? ORDER BY appointments.Appointment_ID";
+            PreparedStatement ps = JDBC.conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentID = rs.getInt("Appointment_ID");
+                String title = rs.getString("Title");
+                String description = rs.getString("Description");
+                int aptContactID = rs.getInt("Contact_ID");
+                String aptContact = rs.getString("Contact_Name");
+                int subtypeID = rs.getInt("Subtype_ID");
+
+                String subtype = String.valueOf(TypeDAO.returnSubtype(subtypeID));
+
+                LocalDateTime aptStart = rs.getTimestamp("Start").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+                LocalDateTime aptEnd = rs.getTimestamp("End").toLocalDateTime().atZone(utcZone).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+
+                int aptCustomerID = rs.getInt("Customer_ID");
+                int aptUserID = rs.getInt("User_ID");
+                String aptLocation = rs.getString("Location");
+                Appointment a = new Appointment(appointmentID, title, description, aptContactID, aptContact,
+                        subtypeID, subtype, aptStart, aptEnd, aptCustomerID, aptUserID, aptLocation);
+                appointmentByTypeList.add(a);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return appointmentByTypeList;
+    }
+
+    /**
      * counts and totals appointments by type
      * @return aptTypeTotalList
      */
@@ -415,40 +454,6 @@ public class AppointmentDAO {
         }
         return searchResults;
     }
-
-    //Retrieves data on existing appointments to check for overlapping appointments
-    //no longer in use
-
-    /*public static boolean overlapCheck(int appointmentID, int aptCustomerID, LocalDateTime start, LocalDateTime end) {
-        try {
-            String sql = "SELECT * FROM appointments WHERE ((Start BETWEEN ? AND ?) OR (End BETWEEN ? AND ?) OR (? BETWEEN Start AND End) OR (? BETWEEN Start AND End)) AND Appointment_ID != ?";
-            PreparedStatement ps = JDBC.conn.prepareStatement(sql);
-            ps.setTimestamp(1, Timestamp.valueOf(start));
-            ps.setTimestamp(2, Timestamp.valueOf(end));
-            ps.setTimestamp(3, Timestamp.valueOf(start));
-            ps.setTimestamp(4, Timestamp.valueOf(end));
-            ps.setTimestamp(5, Timestamp.valueOf(start));
-            ps.setTimestamp(6, Timestamp.valueOf(end));
-            ps.setInt(7, appointmentID); // Exclude the appointment being updated
-            ResultSet rs = ps.executeQuery();
-
-            boolean overlap;
-            if (rs.next()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("Appointment conflicts with an existing customer appointment");
-                alert.showAndWait();
-                overlap = true;
-            } else {
-                overlap = false;
-            }
-            return overlap;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
-
 
 
 

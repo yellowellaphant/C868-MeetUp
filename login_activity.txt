@@ -68,3 +68,5 @@
 04-11-2024 09:10:05 Login attempted by user: <test> Status: successful
 04-11-2024 09:21:53 Login attempted by user: <admin> Status: successful
 04-11-2024 09:23:35 Login attempted by user: <test> Status: successful
+04-14-2024 08:20:18 Login attempted by user: <test> Status: successful
+04-14-2024 08:46:53 Login attempted by user: <test> Status: successful
