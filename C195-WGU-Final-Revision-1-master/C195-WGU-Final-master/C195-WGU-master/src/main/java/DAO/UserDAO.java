@@ -44,9 +44,9 @@ public class UserDAO {
     /**
      * retrieves user ID based on given username
      *
-     * @param username
+     * @param username username
      * @return userID
-     * @throws SQLException
+     * @throws SQLException sqlexception
      */
     public static int getUserID(String username) throws SQLException {
         int userID = 0;
@@ -64,7 +64,7 @@ public class UserDAO {
     /**
      * returns username matching the given user ID
      *
-     * @param userID
+     * @param userID userID
      * @return username
      */
     public static User returnUserID(int userID) {
@@ -89,8 +89,8 @@ public class UserDAO {
     /**
      * Retrieves username and password from database
      *
-     * @param User_Name
-     * @param Password
+     * @param User_Name username
+     * @param Password password
      * @return boolean: true/false
      */
     public static boolean userLogin(String User_Name, String Password) {
@@ -111,7 +111,7 @@ public class UserDAO {
     /**
      * validates username
      *
-     * @param User_Name
+     * @param User_Name username
      * @return boolean: true/false
      */
     public static boolean usernameValidation(String User_Name) {
@@ -132,7 +132,7 @@ public class UserDAO {
     /**
      * validates password
      *
-     * @param Password
+     * @param Password password
      * @return boolean: true/false
      */
     public static boolean passwordValidation(String Password) {
