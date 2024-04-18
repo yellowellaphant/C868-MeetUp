@@ -1,1 +1,4 @@
-04-17-2024 05:21:07 Login attempted by user: <test> Status: successful
+04-17-2024 09:32:50 Login attempted by user: <test> Status: successful
+04-17-2024 09:33:25 Login attempted by user: <incorrect> Status: failed
+04-17-2024 09:34:15 Login attempted by user: <incorrect> Status: failed
+04-17-2024 09:34:59 Login attempted by user: <test> Status: failed
