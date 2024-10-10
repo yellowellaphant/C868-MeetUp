@@ -32,7 +32,7 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="8.0" mnemonicParsing="false" onAction="#onAppointmentsButtonClick" prefHeight="39.0" prefWidth="149.0" text="Appointments">
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="8.0" mnemonicParsing="false" onAction="#onAppointmentsButtonClick" prefHeight="39.0" prefWidth="149.0" text="Meetings">
                      <font>
                         <Font size="16.0" />
                      </font>

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Creates an appointment Scheduling Application
+ * Creates a meeting management application
  * @author Ella Upchurch
  */
 

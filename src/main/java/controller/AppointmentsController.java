@@ -157,7 +157,8 @@ public class AppointmentsController implements Initializable {
                 //AppointmentDAO.deleteAppointment(appointmentTable.getSelectionModel().getSelectedItem().getAppointmentID());
 
                 int aptToDelete = appointmentTable.getSelectionModel().getSelectedItem().getAppointmentID();
-                int aptDelType = appointmentTable.getSelectionModel().getSelectedItem().getSubtypeID();
+                int delSubtypeID = appointmentTable.getSelectionModel().getSelectedItem().getSubtypeID();
+                String aptDelType = String.valueOf(TypeDAO.returnSubtype(delSubtypeID));
                 AppointmentDAO.deleteAppointment(aptToDelete);
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
