@@ -46,7 +46,7 @@ MeetUp is a desktop-based meeting management application designed to facilitate 
    - Populate the database with the provided DDL and DML scripts.
 
 3. **Setting Up the Application:**
-   - Unzip the `C868-WGU-Start` file and open it in IntelliJ IDEA.
+   - Unzip the `C868-MeetUp` file and open it in IntelliJ IDEA.
    - Configure the MySQL connector in the project settings.
    - Locate and run the `Main` class in the project.
 
@@ -79,7 +79,4 @@ Access the Reports section from the Main Directory to view meeting totals and de
 The application includes a unit test plan for the login functionality, ensuring that users can only access the system with valid credentials. Testing results are documented in a `login_activity.txt` file for review.
 
 ## Source Code
-The source code is included in the attached `C868-WGU-Start` file. 
-
-## License
-This project is licensed under the MIT License. For more details, please refer to the LICENSE file included in the repository.
+The source code is included in the attached `C868-MeetUp` file. 
