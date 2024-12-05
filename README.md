@@ -51,6 +51,7 @@ MeetUp is a desktop-based meeting management application designed to facilitate 
    - Locate and run the `Main` class in the project.
 
 ## Usage
+Access the full <a href="C868 Task 2 Section C Upchurch.docx.pdf">User-Guide</a>
 
 ### Logging In
 To access the application, use the following credentials:
